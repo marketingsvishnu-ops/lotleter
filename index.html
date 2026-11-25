@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MOTION HOUSE — thoughtful training, expert coaching and a stronger everyday life.">
+  <title>MOTION HOUSE — Fitness, with intention</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f8f6;
+      --surface: #fff;
+      --ink: #171a20;
+      --muted: #747b84;
+      --line: #e7e9e6;
+      --blue: #3659e8;
+      --blue-soft: #edf0ff;
+      --lime: #dfff78;
+      --radius: 18px;
+      --max: 1180px;
+      --shadow: 0 18px 55px rgba(24, 31, 45, .07);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body { background: var(--bg); color: var(--ink); font-family: "DM Sans", sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    .container { width: min(var(--max), calc(100% - 48px)); margin: auto; }
+    .eyebrow { color: var(--blue); font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
+    h1, h2, h3, .brand, .number { font-family: Manrope, sans-serif; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 48px; padding: 0 20px; border: 1px solid var(--blue); border-radius: 8px; background: var(--blue); color: #fff; font-size: 12px; font-weight: 700; transition: .2s ease; }
+    .btn:hover { background: #2445ce; border-color: #2445ce; transform: translateY(-2px); }
+    .btn-light { background: transparent; color: var(--ink); border-color: #d9dce0; }
+    .btn-light:hover { background: var(--ink); border-color: var(--ink); color: #fff; }
+    .header { position: sticky; top: 0; z-index: 30; height: 76px; background: rgba(247,248,246,.9); border-bottom: 1px solid rgba(231,233,230,.9); backdrop-filter: blur(16px); }
+    .nav { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .brand { font-size: 20px; font-weight: 800; letter-spacing: -.09em; }
+    .brand span { color: var(--blue); }
+    .nav-links { display: flex; align-items: center; gap: 30px; font-size: 12px; font-weight: 600; color: #4f5660; }
+    .nav-links a:not(.btn):hover { color: var(--blue); }
+    .nav-links .btn { min-height: 42px; padding-inline: 16px; color: white; }
+    .menu { display: none; border: 0; background: none; color: var(--ink); font-size: 25px; }
+    .hero { display: grid; grid-template-columns: 1fr .92fr; align-items: center; gap: 56px; padding-block: 88px 92px; }
+    .hero h1 { max-width: 660px; margin-top: 20px; font-size: clamp(58px, 7.4vw, 100px); line-height: .98; letter-spacing: -.075em; font-weight: 800; }
+    .hero h1 span { color: var(--blue); }
+    .hero-copy { max-width: 490px; margin: 24px 0 30px; color: var(--muted); font-size: 16px; line-height: 1.8; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-visual { min-height: 470px; position: relative; overflow: hidden; display: flex; align-items: end; padding: 30px; border-radius: 24px; background: #dfe5ff; }
+    .hero-visual::before { content: ""; position: absolute; width: 390px; height: 390px; top: 22px; left: 50%; transform: translateX(-50%); border-radius: 50%; background: var(--blue); }
+    .hero-visual::after { content: ""; position: absolute; width: 255px; height: 255px; top: 88px; left: 50%; transform: translateX(-50%) rotate(18deg); border: 28px solid var(--lime); border-radius: 50%; }
+    .visual-block { position: absolute; z-index: 1; width: 130px; height: 130px; top: 150px; left: 50%; transform: translateX(-50%) rotate(45deg); background: var(--ink); box-shadow: 18px 18px 0 rgba(255,255,255,.35); }
+    .visual-note { position: relative; z-index: 2; width: 100%; display: flex; justify-content: space-between; align-items: end; color: white; }
+    .visual-note strong { display: block; font: 800 28px Manrope; }
+    .visual-note span { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+    .intro-strip { padding: 24px 0; background: var(--ink); color: #fff; }
+    .strip-inner { display: flex; justify-content: space-between; align-items: center; gap: 22px; flex-wrap: wrap; }
+    .strip-inner p { color: #c2c7d0; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+    .strip-inner strong { color: var(--lime); font: 800 25px Manrope; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; padding-block: 42px; }
+    .stat { padding: 23px 25px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+    .stat strong { display: block; font: 800 32px Manrope; letter-spacing: -.06em; }
+    .stat p { margin-top: 6px; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .12em; }
+    .section { padding-block: 94px; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 32px; margin-bottom: 34px; }
+    .section-head h2 { margin-top: 12px; font-size: clamp(38px, 5vw, 58px); line-height: 1.05; letter-spacing: -.065em; }
+    .section-head > p { max-width: 370px; color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .programs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .program { overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); transition: .25s ease; }
+    .program:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .program-art { height: 205px; display: grid; place-items: center; overflow: hidden; }
+    .art-a { background: #e9edff; } .art-b { background: #edf3e1; } .art-c { background: #eceeed; }
+    .shape { width: 108px; height: 108px; position: relative; border-radius: 50%; background: var(--blue); }
+    .shape::after { content: ""; position: absolute; inset: 22px -28px; border: 13px solid white; border-radius: 50%; transform: rotate(-35deg); }
+    .art-b .shape { border-radius: 8px; background: var(--ink); transform: rotate(45deg); }
+    .art-b .shape::after { border-color: var(--blue); transform: rotate(0); }
+    .art-c .shape { width: 0; height: 0; border-radius: 0; border-left: 65px solid transparent; border-right: 65px solid transparent; border-bottom: 115px solid var(--lime); background: transparent; }
+    .art-c .shape::after { display: none; }
+    .program-body { padding: 25px; }
+    .program-body small { color: var(--blue); font-size: 10px; font-weight: 700; letter-spacing: .13em; }
+    .program-body h3 { margin: 10px 0; font-size: 22px; letter-spacing: -.04em; }
+    .program-body p { color: var(--muted); font-size: 13px; line-height: 1.75; }
+    .program-body a { display: inline-block; margin-top: 20px; color: var(--blue); font-size: 11px; font-weight: 700; }
+    .about { padding-block: 86px; background: var(--ink); color: #fff; }
+    .about-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 70px; align-items: center; }
+    .about-art { min-height: 400px; position: relative; display: grid; place-items: center; overflow: hidden; border-radius: 20px; background: var(--blue); }
+    .about-art::before, .about-art::after { content: ""; position: absolute; border: 1px solid rgba(255,255,255,.55); border-radius: 50%; }
+    .about-art::before { width: 310px; height: 310px; }
+    .about-art::after { width: 220px; height: 220px; border: 24px solid var(--lime); border-radius: 0; transform: rotate(45deg); }
+    .about-art span { z-index: 1; text-align: center; font: 800 48px/1 Manrope; letter-spacing: -.07em; }
+    .about-copy h2 { margin-top: 15px; font-size: clamp(38px, 5vw, 58px); line-height: 1.02; letter-spacing: -.07em; }
+    .about-copy > p { margin: 22px 0; color: #b7bdc7; font-size: 14px; line-height: 1.85; }
+    .perks { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 25px 0 30px; }
+    .perks div { font-size: 12px; font-weight: 600; }
+    .perks span { margin-right: 8px; color: var(--lime); }
+    .pricing { background: #f0f2ef; }
+    .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .plan { padding: 30px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+    .plan.popular { border: 2px solid var(--blue); box-shadow: var(--shadow); }
+    .plan-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .plan h3 { font-size: 20px; letter-spacing: -.04em; }
+    .popular-label { padding: 6px 9px; border-radius: 20px; background: var(--blue-soft); color: var(--blue); font-size: 9px; font-weight: 700; letter-spacing: .08em; }
+    .price { margin: 24px 0 6px; font: 800 38px Manrope; letter-spacing: -.07em; }
+    .price small { color: var(--muted); font: 500 12px "DM Sans"; letter-spacing: 0; }
+    .plan-caption { color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .13em; }
+    .plan ul { list-style: none; margin: 23px 0 26px; color: #555d67; font-size: 13px; line-height: 2.7; }
+    .plan li::before { content: "✓"; margin-right: 10px; color: var(--blue); font-weight: 700; }
+    .plan .btn { width: 100%; }
+    .bmi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .bmi-copy h2 { margin-top: 14px; font-size: clamp(40px, 5vw, 62px); line-height: 1; letter-spacing: -.07em; }
+    .bmi-copy p { max-width: 450px; margin-top: 22px; color: var(--muted); font-size: 14px; line-height: 1.85; }
+    .calculator { padding: 30px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .field { margin-bottom: 18px; }
+    .field label { display: block; margin-bottom: 8px; font-size: 10px; font-weight: 700; letter-spacing: .12em; }
+    .field input { width: 100%; height: 49px; padding: 0 14px; border: 1px solid #dfe2e0; border-radius: 7px; background: #fbfcfb; outline: none; }
+    .field input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-soft); }
+    .calculator .btn { width: 100%; }
+    .result { display: none; margin-top: 16px; padding: 18px; border-radius: 9px; background: var(--ink); color: #fff; font-size: 13px; line-height: 1.6; }
+    .result strong { display: block; color: var(--lime); font: 800 36px Manrope; }
+    .cta { padding: 82px 24px; background: var(--lime); text-align: center; }
+    .cta h2 { margin-top: 14px; font-size: clamp(48px, 8vw, 88px); line-height: .98; letter-spacing: -.08em; }
+    .cta p { max-width: 470px; margin: 20px auto 26px; color: #424b32; font-size: 14px; line-height: 1.8; }
+    .cta .btn { background: var(--ink); border-color: var(--ink); }
+    footer { padding: 48px 0 22px; background: var(--ink); color: #fff; }
+    .footer-top { display: flex; justify-content: space-between; align-items: start; gap: 25px; flex-wrap: wrap; padding-bottom: 32px; }
+    .footer-brand { font: 800 24px Manrope; letter-spacing: -.08em; }
+    .footer-brand span { color: var(--lime); }
+    .footer-top p { margin-top: 8px; color: #9da4af; font-size: 10px; letter-spacing: .1em; }
+    .footer-links { display: flex; gap: 22px; flex-wrap: wrap; color: #c6cbd2; font-size: 12px; }
+    .footer-links a:hover { color: var(--lime); }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; padding-top: 18px; border-top: 1px solid #353a43; color: #9da4af; font-size: 10px; }
+    .reveal { opacity: 0; transform: translateY(16px); transition: .65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; } .reveal { opacity: 1; transform: none; } }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; gap: 35px; padding-block: 65px; }
+      .hero-visual { min-height: 390px; }
+      .about-grid, .bmi-grid { grid-template-columns: 1fr; gap: 40px; }
+      .programs, .plans { grid-template-columns: repeat(2, 1fr); }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 620px) {
+      .container { width: min(100% - 36px, var(--max)); }
+      .header { height: 68px; }
+      .menu { display: block; }
+      .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; padding: 22px 24px 26px; background: var(--bg); border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; gap: 18px; }
+      .nav-links.open { display: flex; }
+      .nav-links .btn { width: 100%; }
+      .hero { padding-block: 52px 58px; }
+      .hero h1 { font-size: clamp(54px, 16vw, 78px); }
+      .hero-copy { font-size: 14px; }
+      .hero-visual { min-height: 310px; padding: 20px; }
+      .hero-visual::before { width: 265px; height: 265px; top: 12px; }
+      .hero-visual::after { width: 175px; height: 175px; top: 57px; border-width: 20px; }
+      .visual-block { width: 95px; height: 95px; top: 95px; }
+      .stats { gap: 10px; padding-block: 28px; }
+      .stat { padding: 17px; }
+      .stat strong { font-size: 26px; }
+      .section { padding-block: 70px; }
+      .section-head { display: block; margin-bottom: 25px; }
+      .section-head > p { margin-top: 15px; }
+      .programs, .plans { grid-template-columns: 1fr; }
+      .about { padding-block: 65px; }
+      .about-art { min-height: 300px; }
+      .about-art::before { width: 235px; height: 235px; }
+      .about-art::after { width: 160px; height: 160px; border-width: 18px; }
+      .about-art span { font-size: 38px; }
+      .perks { grid-template-columns: 1fr; }
+      .calculator { padding: 22px; }
+      .strip-inner { justify-content: center; text-align: center; }
+      .footer-links { gap: 15px; }
+    }
+  </style>
+
+<style id="motion-3d-upgrade">
+/* MOTION HOUSE — 3D visual upgrade */
+.hero-float-label{position:absolute;top:24px;right:24px;z-index:3;padding:10px 14px;border:1px solid rgba(255,255,255,.65);border-radius:30px;background:rgba(255,255,255,.35);backdrop-filter:blur(10px);font-size:9px;font-weight:800;letter-spacing:1.4px;color:#203fc8;box-shadow:0 8px 20px rgba(20,42,140,.1)}
+:root {
+  --blue:#3157f5;
+  --lime:#dcff75;
+  --bg:#f3f5f9;
+}
+body {
+  background:
+    radial-gradient(circle at 12% 10%, rgba(49,87,245,.08), transparent 28rem),
+    radial-gradient(circle at 90% 35%, rgba(220,255,117,.13), transparent 24rem),
+    #f3f5f9;
+}
+header {
+  background:rgba(246,248,252,.82);
+  box-shadow:0 8px 30px rgba(23,26,32,.045);
+}
+.logo { text-shadow:0 2px 0 rgba(0,0,0,.06); }
+.btn {
+  box-shadow:0 7px 0 #203db8, 0 13px 25px rgba(49,87,245,.22);
+  transform:translateY(0);
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.btn:hover {
+  transform:translateY(-4px);
+  box-shadow:0 11px 0 #203db8, 0 20px 32px rgba(49,87,245,.25);
+}
+.btn:active {
+  transform:translateY(3px);
+  box-shadow:0 3px 0 #203db8, 0 7px 14px rgba(49,87,245,.18);
+}
+.hero { perspective:1100px; }
+.hero > div:first-child { animation:floatIn .8s ease both; }
+.hero-art {
+  isolation:isolate;
+  background:
+    radial-gradient(circle at 30% 22%, #fff 0 3%, transparent 3.5%),
+    linear-gradient(135deg,#dce4ff,#b9c9ff 55%,#edf1ff);
+  box-shadow:18px 22px 0 rgba(49,87,245,.10), 0 35px 70px rgba(29,45,100,.17);
+  transform:rotateY(-8deg) rotateX(4deg);
+  transition:transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s ease;
+}
+.hero-art:hover {
+  transform:rotateY(0deg) rotateX(0deg) translateY(-8px);
+  box-shadow:10px 28px 0 rgba(49,87,245,.10), 0 45px 80px rgba(29,45,100,.2);
+}
+.hero-art:before {
+  background:linear-gradient(145deg,#5577ff,#203fc8);
+  box-shadow:inset -22px -24px 35px rgba(12,28,112,.25), 20px 25px 35px rgba(20,42,140,.28);
+  transform:translateZ(55px);
+}
+.hero-art:after {
+  border-color:var(--lime);
+  box-shadow:0 0 0 12px rgba(255,255,255,.17), 0 25px 35px rgba(20,42,140,.16);
+  transform:translateZ(95px) rotateX(12deg);
+}
+.hero-shape {
+  background:linear-gradient(145deg,#303844,#10151d);
+  box-shadow:inset 12px 12px 20px rgba(255,255,255,.13), 18px 24px 30px rgba(0,0,0,.3);
+  transform:translateZ(145px) rotate(45deg);
+}
+.art-caption { text-shadow:0 2px 12px rgba(0,0,0,.3); }
+.stat,.program,.plan,.calculator {
+  transform-style:preserve-3d;
+  box-shadow:0 8px 0 rgba(23,26,32,.035), 0 18px 35px rgba(23,26,32,.055);
+  transition:transform .28s ease, box-shadow .28s ease;
+}
+.stat:hover,.program:hover,.plan:hover,.calculator:hover {
+  transform:translateY(-8px) rotateX(2deg);
+  box-shadow:0 12px 0 rgba(23,26,32,.035), 0 28px 48px rgba(23,26,32,.12);
+}
+.program-art {
+  position:relative;
+  overflow:hidden;
+  perspective:700px;
+}
+.program-art:before {
+  content:"";
+  position:absolute;
+  width:190px;height:190px;
+  border-radius:50%;
+  border:1px solid rgba(49,87,245,.15);
+  transform:rotateX(65deg) translateZ(-12px);
+  box-shadow:0 0 0 18px rgba(255,255,255,.16),0 0 0 38px rgba(255,255,255,.12);
+}
+.program .shape {
+  z-index:1;
+  box-shadow:inset -12px -14px 18px rgba(0,0,0,.15),12px 18px 25px rgba(20,35,80,.2);
+  transform:translateZ(35px);
+}
+.program:nth-child(2) .shape { transform:translateZ(35px) rotate(45deg); }
+.program:nth-child(3) .shape { filter:drop-shadow(12px 18px 12px rgba(0,0,0,.17)); }
+.about-art {
+  perspective:900px;
+  box-shadow:16px 18px 0 rgba(220,255,117,.12),0 35px 60px rgba(0,0,0,.25);
+  transform:rotateY(7deg);
+  transition:transform .5s ease;
+}
+.about-art:hover { transform:rotateY(0) translateY(-5px); }
+.about-art:before { box-shadow:0 0 0 18px rgba(255,255,255,.06),0 0 0 38px rgba(255,255,255,.04); }
+.about-art:after {
+  box-shadow:inset -12px -12px 20px rgba(0,0,0,.18),15px 20px 30px rgba(0,0,0,.25);
+  transform:translateZ(65px) rotate(45deg);
+}
+.plan.featured {
+  background:linear-gradient(145deg,#fff,#f1f4ff);
+  box-shadow:0 10px 0 rgba(49,87,245,.12),0 25px 50px rgba(49,87,245,.13);
+}
+.cta {
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg,#e6ff9c,#d7f66b);
+}
+.cta:before,.cta:after {
+  content:"";
+  position:absolute;
+  width:220px;height:220px;
+  border:1px solid rgba(23,26,32,.13);
+  border-radius:50%;
+  pointer-events:none;
+}
+.cta:before { left:-90px;top:-100px;box-shadow:0 0 0 25px rgba(255,255,255,.12),0 0 0 50px rgba(255,255,255,.1); }
+.cta:after { right:-100px;bottom:-130px;box-shadow:0 0 0 25px rgba(255,255,255,.12),0 0 0 50px rgba(255,255,255,.1); }
+.cta > * { position:relative;z-index:1; }
+@keyframes floatIn {
+  from { opacity:0;transform:translateY(18px); }
+  to { opacity:1;transform:translateY(0); }
+}
+@media(max-width:620px) {
+  .hero-art,.about-art { transform:none; }
+  .hero-art:hover,.about-art:hover { transform:translateY(-4px); }
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after { animation:none!important;transition:none!important;scroll-behavior:auto!important; }
+}
+</style>
+
+</head>
+<body>
+  <header class="header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#home">MOTION<span>HOUSE.</span></a>
+      <button class="menu" id="menuButton" aria-label="Open menu" aria-expanded="false">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#programs">Programs</a><a href="#about">Our club</a><a href="#membership">Membership</a><a href="#bmi">BMI check</a>
+        <a class="btn" href="#membership">Join the house <span>↗</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero container">
+      <div>
+        <div class="eyebrow">A new culture of movement · Est. 2026</div>
+        <h1>Move with<br><span>intention.</span></h1>
+        <p class="hero-copy">A better kind of fitness club. Thoughtful spaces, expert coaching and a community that helps you feel stronger — in and out of the gym.</p>
+        <div class="hero-actions"><a class="btn" href="#membership">Explore membership ↗</a><a class="btn btn-light" href="#programs">Discover programs</a></div>
+      </div>
+      <div class="hero-visual" aria-label="Abstract geometric artwork">
+        <div class="visual-block"></div>
+        <div class="visual-note"><div><strong>01 / 03</strong><span>Find your rhythm</span></div><span>Strength · Energy · Movement</span></div>
+      </div>
+    </section>
+
+    <div class="intro-strip"><div class="container strip-inner"><p>Move better. Feel stronger. Live bigger.</p><strong>MOVE WITH INTENT.</strong></div></div>
+
+    <section class="stats container" aria-label="Club highlights">
+      <div class="stat"><strong>25+</strong><p>EXPERT COACHES</p></div>
+      <div class="stat"><strong>40+</strong><p>WEEKLY CLASSES</p></div>
+      <div class="stat"><strong>3K+</strong><p>ACTIVE MEMBERS</p></div>
+      <div class="stat"><strong>24/7</strong><p>ACTIVE MINDSET</p></div>
+    </section>
+
+    <section class="section container" id="programs">
+      <div class="section-head reveal"><div><div class="eyebrow">01 / Find your focus</div><h2>Training for<br>every kind of you.</h2></div><p>Build strength, improve endurance or move with more freedom. Find the training style that fits your goals.</p></div>
+      <div class="programs">
+        <article class="program reveal"><div class="program-art art-a"><div class="shape"></div></div><div class="program-body"><small>01 — STRENGTH</small><h3>Power Club</h3><p>Progressive resistance training to build strength, develop muscle and improve performance.</p><a href="#membership">Explore program ↗</a></div></article>
+        <article class="program reveal"><div class="program-art art-b"><div class="shape"></div></div><div class="program-body"><small>02 — CONDITIONING</small><h3>Energy Room</h3><p>High-energy sessions that build stamina, endurance and cardiovascular fitness.</p><a href="#membership">Explore program ↗</a></div></article>
+        <article class="program reveal"><div class="program-art art-c"><div class="shape"></div></div><div class="program-body"><small>03 — MOVEMENT</small><h3>Body Lab</h3><p>Mobility and functional training for better movement and a stronger everyday life.</p><a href="#membership">Explore program ↗</a></div></article>
+      </div>
+    </section>
+
+    <section class="about" id="about"><div class="about-grid container">
+      <div class="about-art reveal"><span>MOVE<br>YOUR<br>WORLD.</span></div>
+      <div class="about-copy reveal"><div class="eyebrow" style="color:var(--lime)">02 / The Motion House approach</div><h2>More than<br>a workout.</h2><p>MOTION HOUSE brings together considered training spaces, passionate coaches and a welcoming community. Whether you're starting fresh or building on your progress, there's room to move at your pace.</p>
+        <div class="perks"><div><span>✦</span> Personal coaching</div><div><span>✦</span> Premium equipment</div><div><span>✦</span> Group classes</div><div><span>✦</span> Recovery facilities</div></div>
+        <a class="btn" href="#membership">Experience the club ↗</a>
+      </div>
+    </div></section>
+
+    <section class="section pricing" id="membership"><div class="container">
+      <div class="section-head reveal"><div><div class="eyebrow">03 / Membership</div><h2>Your space.<br>Your pace.</h2></div><p>Simple membership options designed to support your routine. Choose the level that works for you.</p></div>
+      <div class="plans">
+        <article class="plan reveal"><div class="plan-top"><h3>Core</h3></div><div class="price">AED 199<small> / month</small></div><div class="plan-caption">THE ESSENTIALS</div><ul><li>Gym floor access</li><li>Premium equipment</li><li>Locker facilities</li><li>Fitness assessment</li></ul><a class="btn btn-light" href="mailto:hello@motionhouse.com?subject=Core%20Membership">Choose Core ↗</a></article>
+        <article class="plan popular reveal"><div class="plan-top"><h3>Plus</h3><span class="popular-label">MOST POPULAR</span></div><div class="price">AED 299<small> / month</small></div><div class="plan-caption">THE FULL EXPERIENCE</div><ul><li>All Core benefits</li><li>Unlimited group classes</li><li>Monthly coach session</li><li>Recovery zone access</li></ul><a class="btn" href="mailto:hello@motionhouse.com?subject=Plus%20Membership">Choose Plus ↗</a></article>
+        <article class="plan reveal"><div class="plan-top"><h3>All Access</h3></div><div class="price">AED 449<small> / month</small></div><div class="plan-caption">THE COMPLETE PACKAGE</div><ul><li>All Plus benefits</li><li>Personal training session</li><li>Priority class booking</li><li>Nutrition consultation</li></ul><a class="btn btn-light" href="mailto:hello@motionhouse.com?subject=All%20Access%20Membership">Choose All Access ↗</a></article>
+      </div>
+    </div></section>
+
+    <section class="section container" id="bmi"><div class="bmi-grid">
+      <div class="bmi-copy reveal"><div class="eyebrow">04 / Your fitness snapshot</div><h2>Start with<br>where you are.</h2><p>Use this simple calculator to estimate your Body Mass Index (BMI). BMI is a general screening measure and does not provide a complete picture of health or fitness.</p></div>
+      <form class="calculator reveal" id="bmiForm">
+        <div class="field"><label for="weight">WEIGHT (KG)</label><input id="weight" type="number" min="1" max="500" step=".1" placeholder="e.g. 75" required></div>
+        <div class="field"><label for="height">HEIGHT (CM)</label><input id="height" type="number" min="50" max="250" step=".1" placeholder="e.g. 175" required></div>
+        <button class="btn" type="submit">Calculate BMI ↗</button><div class="result" id="bmiResult" role="status" aria-live="polite"></div>
+      </form>
+    </div></section>
+
+    <section class="cta"><div class="eyebrow">Your next chapter starts here</div><h2>Make your move.</h2><p>Find your rhythm, discover your strength and become part of the MOTION HOUSE community.</p><a class="btn" href="mailto:hello@motionhouse.com?subject=Join%20Motion%20House">Join the house ↗</a></section>
+  </main>
+
+  <footer><div class="container">
+    <div class="footer-top"><div><a class="footer-brand" href="#home">MOTION<span>HOUSE.</span></a><p>MOVE WITH INTENT. LIVE WITH ENERGY.</p></div><div class="footer-links"><a href="#programs">Programs</a><a href="#about">Our club</a><a href="#membership">Membership</a><a href="#bmi">BMI calculator</a></div></div>
+    <div class="footer-bottom"><span>© <span id="year"></span> MOTION HOUSE. ALL RIGHTS RESERVED.</span><span>BUILT FOR MOVEMENT.</span></div>
+  </div></footer>
+
+  <script>
+    const menuButton = document.getElementById("menuButton");
+    const navLinks = document.getElementById("navLinks");
+    menuButton.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("open");
+      menuButton.textContent = open ? "✕" : "☰";
+      menuButton.setAttribute("aria-expanded", String(open));
+      menuButton.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    });
+    navLinks.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      menuButton.textContent = "☰";
+      menuButton.setAttribute("aria-expanded", "false");
+    }));
+
+    document.getElementById("bmiForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const weight = Number(document.getElementById("weight").value);
+      const height = Number(document.getElementById("height").value);
+      const output = document.getElementById("bmiResult");
+      if (!Number.isFinite(weight) || !Number.isFinite(height) || weight <= 0 || weight > 500 || height < 50 || height > 250) {
+        output.style.display = "block";
+        output.textContent = "Please enter a valid height and weight.";
+        return;
+      }
+      const bmi = weight / ((height / 100) ** 2);
+      const category = bmi < 18.5 ? "Underweight range" : bmi < 25 ? "Healthy weight range" : bmi < 30 ? "Overweight range" : "Obesity range";
+      output.style.display = "block";
+      output.innerHTML = `<strong>${bmi.toFixed(1)}</strong>${category}<br><small>BMI is a screening tool, not a diagnosis.</small>`;
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); }
+      }), { threshold: .12 });
+      document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+    } else {
+      document.querySelectorAll(".reveal").forEach(el => el.classList.add("visible"));
+    }
+  </script>
+</body>
+</html>
